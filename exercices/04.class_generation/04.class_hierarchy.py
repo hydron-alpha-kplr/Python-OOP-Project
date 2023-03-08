@@ -4,16 +4,25 @@ from unidecode import unidecode
 import re
 import os
 
+
+def trimspaces(data):
+    # Define a regular expression pattern to match quoted substrings
+    pattern = r'"[^"]*"'
+    # Replace spaces and hyphens with underscore
+    #return re.sub(pattern, lambda m: m.group(0).replace(" ", "_").replace("-", "_"), str(unidecode(json.dumps(data))))
+    data_s=json.dumps(data)
+    return re.sub(pattern, lambda m: m.group(0).replace(" ", "_").replace("-", "_"), data_s)
+
 # Charger des données JSON à partir du fichier dans un dictionnaire python
 local_path = os.path.dirname(os.path.abspath(__file__))
 json_data = json.load(open(os.path.join(local_path, 'json_data.json'), "rb"))
 
 # Reconvertir le dictionnaire en chaine de caractere pour le traiter ensuite
-json_str = json.dumps(json_data)
+json_str = trimspaces(json_data)
 json_str = json_str.replace("-", "_")
 
 # Utilisation de la fonction unidecode pour enlever les accents et autres caractères spéciaux
-json_data = (unidecode(json_str))
+json_data = unidecode(json_str)
 
 # Conversion de la chaine de caractere JSON à nouveau en dictionnaire Python
 # Le dictionnaire python est plus pratique à manipuler que la chaine de caractère car il est structuré

@@ -23,12 +23,18 @@ class TestInventoryManager(unittest.TestCase):
 
     # Test de la méthode add_product de la classe InventoryManager
     def test_add_product(self):
-        
-         """
+        """
          -Ajout de 5 chaises à l'inventaire en utilisant la méthode add_product
          -Vérification que la chaise a bien été ajoutée à l'inventaire avec la méthode assertIn ( assertIn(argument1, argument2) )
          -assertIn est une méthode fournie par le module unittest de Python qui vérifie si le premier argument est contenu dans le second argument.
         """
+        #Création des variables de tests :
+        inventory_manager_test = {}
+        inventory_manager_test.update({self.chaise, self.chaise, self.chaise, self.chaise, self.chaise})
+
+        #Appel de la méthode à tester
+        self.inventory_manager.add_product(self.chaise, 5)
+
 
     # Test de la méthode remove_product de la classe InventoryManager
     def test_remove_product(self):
