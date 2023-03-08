@@ -1,3 +1,4 @@
+product_classes.py
 class Product:
 	def __init__(self, cost, price, marque):
 		self.cost = cost
@@ -5,97 +6,97 @@ class Product:
 		self.marque = marque
 		self.name=type(self).__name__
 
-class Biens Consommation(subclasses):
+class Biens Consommation(Product):
 	def __init__(self, cost, price, marque):
 		super().__init__(cost, price, marque)
 
-class Articles Menagers(subclasses):
+class Articles Menagers(Biens Consommation):
 	def __init__(self, cost, price, marque):
 		super().__init__(cost, price, marque)
 
-class Meubles(subclasses):
+class Meubles(Articles Menagers):
 	def __init__(self, materiau, couleur, dimensions, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.materiau = materiau
 		self.couleur = couleur
 		self.dimensions = dimensions
 
-class Canape(subclasses):
+class Canape(Meubles):
 	def __init__(self, materiau, couleur, dimensions, cost, price, marque):
 		super().__init__(materiau, couleur, dimensions, cost, price, marque)
 
-class Chaise(subclasses):
+class Chaise(Meubles):
 	def __init__(self, materiau, couleur, dimensions, cost, price, marque):
 		super().__init__(materiau, couleur, dimensions, cost, price, marque)
 
-class Table(subclasses):
+class Table(Meubles):
 	def __init__(self, materiau, couleur, dimensions, cost, price, marque):
 		super().__init__(materiau, couleur, dimensions, cost, price, marque)
 
-class Appareils Electromenagers(subclasses):
+class Appareils Electromenagers(Articles Menagers):
 	def __init__(self, capacite, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.capacite = capacite
 
-class Refrigerateur(subclasses):
+class Refrigerateur(Appareils Electromenagers):
 	def __init__(self, efficacite, capacite, cost, price, marque):
 		super().__init__(capacite, cost, price, marque)
 		self.efficacite = efficacite
 
-class Lave-vaisselle(subclasses):
+class Lave_vaisselle(Appareils Electromenagers):
 	def __init__(self, programme, capacite, cost, price, marque):
 		super().__init__(capacite, cost, price, marque)
 		self.programme = programme
 
-class Lave-linge(subclasses):
+class Lave_linge(Appareils Electromenagers):
 	def __init__(self, programme, capacite, cost, price, marque):
 		super().__init__(capacite, cost, price, marque)
 		self.programme = programme
 
-class Ustensiles Cuisine(subclasses):
+class Ustensiles Cuisine(Articles Menagers):
 	def __init__(self, materiaux, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.materiaux = materiaux
 
-class Casserole(subclasses):
+class Casserole(Ustensiles Cuisine):
 	def __init__(self, diametre, materiaux, cost, price, marque):
 		super().__init__(materiaux, cost, price, marque)
 		self.diametre = diametre
 
-class Batterie Cuisine(subclasses):
+class Batterie Cuisine(Ustensiles Cuisine):
 	def __init__(self, nombre_pieces, materiaux, cost, price, marque):
 		super().__init__(materiaux, cost, price, marque)
 		self.nombre_pieces = nombre_pieces
 
-class Habillement(subclasses):
+class Habillement(Biens Consommation):
 	def __init__(self, cost, price, marque):
 		super().__init__(cost, price, marque)
 
-class Vetements(subclasses):
+class Vetements(Habillement):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.taille = taille
 		self.couleur = couleur
 		self.matiere = matiere
 
-class Haut(subclasses):
+class Haut(Vetements):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(taille, couleur, matiere, cost, price, marque)
 
-class Pantalon(subclasses):
+class Pantalon(Vetements):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(taille, couleur, matiere, cost, price, marque)
 
-class Robe(subclasses):
+class Robe(Vetements):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(taille, couleur, matiere, cost, price, marque)
 
-class Casquette(subclasses):
+class Casquette(Habillement):
 	def __init__(self, couleur, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.couleur = couleur
 
-class Chaussures(subclasses):
+class Chaussures(Habillement):
 	def __init__(self, pointure, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.pointure = pointure
