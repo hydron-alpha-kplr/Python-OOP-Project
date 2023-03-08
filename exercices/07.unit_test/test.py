@@ -4,8 +4,8 @@ import unittest
 sys.path.extend(['.','..'])
 
 #Import des classes à tester
-from classes.product_classes import Chaise, Pantalon
-from inventory.stock_manager import InventoryManager
+from product_classes import Chaise, Pantalon
+from inventory_manager import InventoryManager
 
 #Définition de la classe de test
 class TestInventoryManager(unittest.TestCase):
@@ -28,23 +28,30 @@ class TestInventoryManager(unittest.TestCase):
          -Vérification que la chaise a bien été ajoutée à l'inventaire avec la méthode assertIn ( assertIn(argument1, argument2) )
          -assertIn est une méthode fournie par le module unittest de Python qui vérifie si le premier argument est contenu dans le second argument.
         """
-        #Création des variables de tests :
-        inventory_manager_test = {}
-        inventory_manager_test.update({self.chaise, self.chaise, self.chaise, self.chaise, self.chaise})
 
         #Appel de la méthode à tester
         self.inventory_manager.add_product(self.chaise, 5)
+
+        #Tests
+        # AssertIn vérifie si le param1 est PRESENT dans le param 2, et non l'égalité entre les 2
+        self.assertIn(self.chaise.name, self.inventory_manager.inventory)
 
 
     # Test de la méthode remove_product de la classe InventoryManager
     def test_remove_product(self):
         
-         """
+        """
          -Ajout de 5 pantalons à l'inventaire en utilisant la méthode add_product
          -Suppression le pantalon de l'inventaire en utilisant la méthode remove_product
          -Vérification que le pantalon a bien été supprimé de l'inventaire avec la méthode assertNotIn ( assertNotIn(argument1, argument2) )
          -assertNotIn est une méthode qui permet de vérifier si un élément n'est pas présent dans une séquence
         """
+        self.inventory_manager.add_product(self.pantalon, 5)
+         #Appel de la méthode à tester
+        self.inventory_manager.remove_product(self.pantalon)
+        self.assertNotIn(self.pantalon, self.inventory_manager.inventory)
+
+
     # Test de la méthode sell_product de la classe InventoryManager
     def test_sell_product(self):
         """
@@ -54,24 +61,34 @@ class TestInventoryManager(unittest.TestCase):
          - La méthode assertEqual prend deux arguments, les valeurs attendue et observée, et vérifie si les deux sont égaux. 
            Si les deux valeurs sont égales, le test réussit. Sinon, il échoue et affiche un message d'erreur indiquant les valeurs attendue et observée.
         """  
+        self.inventory_manager.add_product(self.pantalon, 5)
+        self.inventory_manager.sell_product(self.pantalon.name, 2)
+        self.assertEqual(5-2, self.inventory_manager.inventory["Pantalon"].quantity)
         
         
     # Test de la méthode restock_product de la classe InventoryManager
     def test_restock_product(self):
-         """
+        """
          -Ajout de 10 chaises à l'inventaire
          -Réapprovisionnement (restocker) de 5 chaises en utilisant la méthode restock_product
          -Vérification que le nombre de chaises en stock a bien été mis à jour avec la méthode assertEqual
         """
+        self.inventory_manager.add_product(self.chaise, 10)
+        self.inventory_manager.restock_product(self.chaise, 5)
+        self.assertEqual(10+5, self.inventory_manager.inventory["Chaise"].quantity)
         
     # Test de la méthode get_product de la classe InventoryManager
     def test_get_product(self):
         
-         """
-         -Ajout de 5 chaises à l'inventaire
-         -Récupération de la chaise ajoutée précédemment en utilisant la méthode get_product
-         -Vérification que la chaise récupérée est bien celle ajoutée précédemment avec la méthode assertEqual
-         """
+        """
+        -Ajout de 5 chaises à l'inventaire
+        -Récupération de la chaise ajoutée précédemment en utilisant la méthode get_product
+        -Vérification que la chaise récupérée est bien celle ajoutée précédemment avec la méthode assertEqual
+        """
+        self.inventory_manager.add_product(self.chaise, 5)
+        callResult = self.inventory_manager.get_product(self.chaise.name)
+        self.assertEqual(callResult, self.chaise)
+
     # Test de la méthode list_products de la classe InventoryManager
     def test_list_products(self):
         """ 

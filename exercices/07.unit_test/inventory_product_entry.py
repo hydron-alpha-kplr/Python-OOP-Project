@@ -1,6 +1,8 @@
 # Vous allez créer une classe InventoryProductEntry qui a pour role 
 # de représenter une entrée d'inventaire pour un produit spécifique.
 
+from product_classes import Product
+
 class InventoryProductEntry:
     # Initialisation de la classe, en prenant en argument un objet Product et une quantité initiale
     def __init__(self, product: Product, quantity):
@@ -33,7 +35,7 @@ class InventoryProductEntry:
         # Retourner une chaîne de caractères formatée contenant le nom du produit, la marque, la quantité en stock et le prix du produit.
         response = "Produit :" + self.product.name + "\n"
         response += "Marque :" + self.product.marque + "\n"
-        response += "Stock :" + self.quantity + "\n"
-        response += "Prix :" + self.product.price + "\n"
-
+        response += "Stock :" + str(self.quantity) + "\n"
+        response += "Prix :" + str(self.product.price) + "\n"
+        
         return response

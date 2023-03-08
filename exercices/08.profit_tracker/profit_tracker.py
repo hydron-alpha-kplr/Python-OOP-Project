@@ -5,7 +5,7 @@ class ProfitTracker:
     # Le constructeur initialise la variable balance (solde)
     def __init__(self):
         # Créer une variable 'balance' et l'initialiser à 1000 euros
-
+        balance = 1000
     #Méthode buy_product 
     """   
     La méthode buy_product est utilisée pour acheter un produit et mettre à jour le coût total et le solde.
