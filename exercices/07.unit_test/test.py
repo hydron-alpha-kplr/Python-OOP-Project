@@ -97,6 +97,10 @@ class TestInventoryManager(unittest.TestCase):
         - Définir une variable qui contient la sortie attendue qui sera  "Chaise (Ikea): 5 in stock,  price:100"
         - Vérification que le premier résultat de la méthode list_products égal à la sortie attendue
         """
+        self.inventory_manager.add_product(self.chaise, 5)
+        self.inventory_manager.add_product(self.pantalon, 10)
+        callResult = self.inventory_manager.list_products()
+        self.assertEqual(callResult, self.inventory_manager.inventory)
         
 # Exécuter le code     
 if __name__ == '__main__':
